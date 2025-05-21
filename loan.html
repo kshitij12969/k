@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>KT Consultancy - Loan Consultancy Services</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #2c3e50;
+    background: url('https://images.unsplash.com/photo-1515162305282-03807c4f1cbb?auto=format&fit=crop&w=1370&q=80') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+  }
+
+  /* overlay behind content for readability */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(240, 244, 248, 0.85);
+    z-index: -1;
+  }
+
+  /* Navbar styles */
+  nav {
+    position: sticky;
+    top: 0;
+    background: #0747a6cc; /* semi-transparent */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 60px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.15);
+    z-index: 1000;
+    backdrop-filter: saturate(180%) blur(14px);
+  }
+
+  nav .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  nav svg.logo-icon {
+    width: 40px;
+    height: 40px;
+    fill: #f39c12;
+  }
+
+  nav .logo-text {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #f39c12;
+    letter-spacing: 1.5px;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+  }
+
+  nav ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px;
+    transition: color 0.3s ease;
+  }
+
+  nav ul li a:hover,
+  nav ul li a:focus {
+    color: #f39c12;
+    outline: none;
+  }
+
+  /* Hero section */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 80px 40px 60px;
+    background: linear-gradient(135deg, #3a7bd5, #00d2ff);
+    color: white;
+    max-width: 1200px;
+    margin: 40px auto 60px auto;
+    border-radius: 16px;
+    flex-wrap: wrap;
+    box-shadow: 0 8px 30px rgba(0, 210, 255, 0.25);
+  }
+
+  .hero-text {
+    flex: 1 1 400px;
+  }
+
+  .hero-text h2 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #e0f7ffdd;
+    font-weight: 500;
+  }
+
+  .hero-image {
+    flex: 1 1 400px;
+  }
+
+  .hero-image img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(0, 210, 255, 0.4);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    transition: transform 0.3s ease;
+  }
+
+  .hero-image img:hover {
+    transform: scale(1.05) rotate(1.5deg);
+  }
+
+  /* Services section */
+  section.services {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 40px;
+  }
+
+  section.services h3 {
+    font-weight: 800;
+    font-size: 2.25rem;
+    text-align: center;
+    color: #0747a6;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+  }
+
+  .services-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .service-item {
+    background: white;
+    border-radius: 18px;
+    padding: 30px 25px;
+    box-shadow: 0 8px 20px rgba(7, 71, 166, 0.1);
+    width: 280px;
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: default;
+    user-select: none;
+  }
+
+  .service-item:hover,
+  .service-item:focus {
+    box-shadow: 0 12px 35px rgba(7, 71, 166, 0.3);
+    transform: translateY(-8px);
+    outline: none;
+  }
+
+  .service-item h4 {
+    margin-bottom: 16px;
+    font-weight: 700;
+    color: #0747a6;
+    font-size: 1.25rem;
+  }
+
+  .service-item p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  /* About section */
+  section.about {
+    background: white;
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 35px rgba(7, 71, 166, 0.1);
+    color: #2c3e50;
+  }
+
+  section.about h3 {
+    font-weight: 800;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #0747a6;
+  }
+
+  section.about p {
+    font-size: 1.125rem;
+    line-height: 1.65;
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 500;
+  }
+
+  /* Contact section */
+  section.contact {
+    background: white;
+    max-width: 600px;
+    margin: 60px auto 80px;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 35px rgba(7, 71, 166, 0.15);
+  }
+
+  section.contact h3 {
+    font-weight: 800;
+    font-size: 2.25rem;
+    text-align: center;
+    margin-bottom: 36px;
+    color: #0747a6;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  input, textarea {
+    font-family: 'Poppins', sans-serif;
+    padding: 14px 17px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1.8px solid #c4d1e0;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: vertical;
+  }
+
+  input:focus, textarea:focus {
+    border-color: #0747a6;
+    box-shadow: 0 0 12px rgba(7, 71, 166, 0.3);
+  }
+
+  textarea {
+    min-height: 120px;
+  }
+
+  button {
+    background: linear-gradient(90deg, #f39c12 0%, #e67e22 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+
+  button:hover {
+    background: linear-gradient(90deg, #e67e22 0%, #d35400 100%);
+    box-shadow: 0 0 20px rgba(230, 126, 34, 0.7);
+  }
+
+  .contact-info {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #0747a6;
+  }
+
+  .contact-info a {
+    color: #f39c12;
+    text-decoration: none;
+    font-weight: 700;
+    margin: 0 8px;
+    transition: color 0.3s ease;
+  }
+
+  .contact-info a:hover,
+  .contact-info a:focus {
+    color: #e67e22;
+    outline: none;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 24px 10px;
+    color: #555;
+    font-size: 14px;
+    background: #e1e9f7;
+  }
+
+  a.external-link {
+    color: #f39c12;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  a.external-link:hover,
+  a.external-link:focus {
+    color: #e67e22;
+    outline: none;
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 0 20px;
+    }
+    nav ul {
+      gap: 18px;
+    }
+    .hero {
+      padding: 60px 20px 40px;
+      flex-direction: column;
+      text-align: center;
+    }
+    .hero-text, .hero-image {
+      flex: unset;
+      width: 100%;
+    }
+    .hero-image img {
+      max-width: 100%;
+    }
+    .services-list {
+      gap: 24px;
+    }
+    .service-item {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    section.services, .hero, section.contact, section.about {
+      padding: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+  <nav role="navigation" aria-label="Primary">
+    <div class="logo-container">
+      <svg class="logo-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="30" />
+        <path fill="white" d="M20 44l24-24M20 20l24 24" stroke="#f39c12" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="logo-text">KT Consultancy</div>
+    </div>
+    <ul>
+      <li><a href="#home" tabindex="0">Home</a></li>
+      <li><a href="#services" tabindex="0">Services</a></li>
+      <li><a href="#about" tabindex="0">About</a></li>
+      <li><a href="#contact" tabindex="0">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="home" class="hero" aria-label="Introduction to KT Consultancy">
+      <div class="hero-text">
+        <h2>Your Trusted Loan Consultancy Partner</h2>
+        <p>At KT Consultancy, we help you navigate the loan process smoothly and find the best financing options tailored just for you. Our experienced consultants guide you every step of the way.</p>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1590080877777-fdcec90e9861?auto=format&fit=crop&w=800&q=80" alt="Person reviewing loan documents"/>
+      </div>
+    </section>
+
+    <section id="services" class="services" aria-label="Our Services">
+      <h3>Our Services</h3>
+      <div class="services-list">
+        <article class="service-item" tabindex="0">
+          <h4>Personal Loans</h4>
+          <p>Competitive personal loan options designed to meet your financial needs quickly and reliably.</p>
+        </article>
+        <article class="service-item" tabindex="0">
+          <h4>Home Loans</h4>
+          <p>Expert advice on home financing with plans suited to your budget and long-term goals.</p>
+        </article>
+        <article class="service-item" tabindex="0">
+          <h4>Business Loans</h4>
+          <p>Helping startups and established businesses secure the financing needed to grow and succeed.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about" aria-label="About KT Consultancy">
+      <h3>About KT Consultancy</h3>
+      <p>Founded with the goal of making loan consultancy accessible and transparent, KT Consultancy has been empowering individuals and businesses since 2015. Our team combines deep industry knowledge, personalized guidance, and the latest financial tools to simplify your borrowing experience.</p>
+    </section>
+
+    <section id="contact" class="contact" aria-label="Contact KT Consultancy">
+      <h3>Contact Us</h3>
+      <form id="contact-form" novalidate>
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" name="name" required aria-required="true" placeholder="Your full name" />
+
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" required aria-required="true" placeholder="your.email@example.com" />
+
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" required aria-required="true" placeholder="+1 234 567 8901" />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell us how we can help you..."></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+      <div class="contact-info" aria-live="polite">
+        <p>Email: <a href="mailto:ktconsultancy21@gmail.com" class="external-link" tabindex="0">ktconsultancy21@gmail.com</a></p>
+        <p>Phone: <a href="tel:+12345678901" class="external-link" tabindex="0">+1 234 567 8901</a></p>
+        <p>Follow us on Instagram: <a href="https://instagram.com/ktconsultancy" target="_blank" rel="noopener noreferrer" class="external-link" tabindex="0">@ktconsultancy</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2024 KT Consultancy. All rights reserved. <br />
+    Visit us on
+    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="external-link" tabindex="0">LinkedIn</a> |
+    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="external-link" tabindex="0">Facebook</a> |
+    <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" class="external-link" tabindex="0">Twitter</a>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contact-form');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        alert('Please fill all required fields properly.');
+        return;
+      }
+
+      alert('Thank you for contacting KT Consultancy. We will get back to you soon!');
+
+      form.reset();
+    });
+
+    // Accessibility: add keyboard focus style for nav links
+    const navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach(link => {
+      link.addEventListener('focus', () => {
+        link.style.outline = '2px solid #f39c12';
+        link.style.outlineOffset = '3px';
+      });
+      link.addEventListener('blur', () => {
+        link.style.outline = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
